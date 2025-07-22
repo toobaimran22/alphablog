@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: <%= ENV["USER"] %>        # Uses your system user (e.g., tooba)
+  password:                           # Leave blank if your local PostgreSQL doesn't require password
+  host: localhost
+
+development:
+  <<: *default
+  database: alphablog_development
+
+test:
+  <<: *default
+  database: alphablog_test
+
+production:
+  <<: *default
+  database: alphablog_production
+  username: alphablog
+  password: <%= ENV['ALPHABLOG_DATABASE_PASSWORD'] %>
